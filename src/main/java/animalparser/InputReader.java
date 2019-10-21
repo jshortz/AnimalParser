@@ -1,4 +1,3 @@
-
 /**
  * Class that creates a Scanner object with defined methods for reading the next String or next Int
  * Not necessary, but makes working with the Scanner more easily understood syntactically
