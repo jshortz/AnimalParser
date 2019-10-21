@@ -5,3 +5,4 @@ public class Dog extends Animal {
         super(num_of_legs);
     }
 }
+
