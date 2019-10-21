@@ -21,4 +21,7 @@ public class Animal {
         return name;
     }
 
+    public int getYear() {
+        return year;
+    }
 }

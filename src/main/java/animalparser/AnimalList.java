@@ -1,6 +1,5 @@
 package animalparser;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -9,14 +8,12 @@ public class AnimalList {
 
     protected ArrayList<Animal> animalList;
     protected ArrayList<Animal> allAnimals;
+    protected ArrayList<Animal> swimmers;
 
     public AnimalList() throws FileNotFoundException {
         animalList = new ArrayList<>();
         allAnimals = createListOfAllAnimals();
-    }
-
-    public void add(Animal animal) {
-        animalList.add(animal);
+        swimmers = collectSwimmers();
     }
 
     public ArrayList createListOfAllAnimals() throws FileNotFoundException {
@@ -68,9 +65,9 @@ public class AnimalList {
         return listToReturn;
     }
 
-    public void printAllAnimals() {
-        allAnimals.sort(Comparator.comparing(Animal::getName));
-        for (Animal animal : allAnimals) {
+    public void printAllAnimals(ArrayList<Animal> listToPrint) {
+        listToPrint.sort(Comparator.comparing(Animal::getName));
+        for (Animal animal : listToPrint) {
             System.out.println();
             System.out.println("Subtype: " + animal.subtype);
             System.out.println("Name: " + animal.name);
@@ -85,8 +82,30 @@ public class AnimalList {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public ArrayList getAnimalsWithAtLeastXLegs(int xLegs) throws FileNotFoundException {
+        ArrayList<Animal> legsList = createListOfAllAnimals();
+        legsList.removeIf(animal -> (animal.num_of_legs < xLegs));
+        return legsList;
+    }
+
+    public ArrayList collectSwimmers() throws FileNotFoundException {
+        swimmers = createListOfAllAnimals();
+        swimmers.removeIf(animal -> (!animal.isSwimmer));
+        swimmers.sort(Comparator.comparing(Animal::getYear));
+        return swimmers;
+    }
+
+    public void printSwimmersToCSV() throws IOException {
+        BufferedWriter outputToFile = new BufferedWriter(new FileWriter("swimmers.csv", true));
+        for (Animal animal : swimmers) {
+            outputToFile.append(animal.subtype + "," + animal.name + "," + animal.year + "\n");
+        }
+        outputToFile.close();
+    }
+
+    public static void main(String[] args) throws IOException {
         AnimalList animalList = new AnimalList();
-        animalList.printAllAnimals();
+        animalList.printAllAnimals(animalList.allAnimals);
+        animalList.printSwimmersToCSV();
     }
 }
