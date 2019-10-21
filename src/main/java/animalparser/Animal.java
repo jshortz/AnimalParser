@@ -1,4 +1,5 @@
 package animalparser;
+import java.util.ArrayList;
 
 public class Animal {
 
@@ -15,4 +16,5 @@ public class Animal {
         this.name = name;
         this.subtype = subtype;
     }
+
 }
