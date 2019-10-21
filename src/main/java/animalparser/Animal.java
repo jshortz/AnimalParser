@@ -1,12 +1,27 @@
 package animalparser;
+import java.util.ArrayList;
 
 public class Animal {
 
     protected boolean isSwimmer;
     protected int num_of_legs;
+    protected int year;
+    protected String name;
+    protected String subtype;
 
-    public Animal(int num_of_legs) {
+    public Animal(int year, String name, String subtype) {
         isSwimmer = false;
-        this.num_of_legs = num_of_legs;
+        num_of_legs = 4;
+        this.year = year;
+        this.name = name;
+        this.subtype = subtype;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getYear() {
+        return year;
     }
 }
