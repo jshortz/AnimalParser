@@ -2,6 +2,7 @@ package animalparser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class AnimalList {
@@ -68,6 +69,7 @@ public class AnimalList {
     }
 
     public void printAllAnimals() {
+        allAnimals.sort(Comparator.comparing(Animal::getName));
         for (Animal animal : allAnimals) {
             System.out.println();
             System.out.println("Subtype: " + animal.subtype);

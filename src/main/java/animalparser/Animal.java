@@ -17,4 +17,8 @@ public class Animal {
         this.subtype = subtype;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }
