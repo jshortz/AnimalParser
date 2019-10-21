@@ -1,11 +1,8 @@
 package animalparser;
 import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class AnimalListTests {
 
@@ -16,20 +13,30 @@ public class AnimalListTests {
         AnimalList animalList = new AnimalList();
         ArrayList<Animal> listToCheck = animalList.createListOfAllAnimals();
         int sizeOfList = listToCheck.size();
-        if (listToCheck.contains("golden retriever") && listToCheck.contains("dolphin") && listToCheck.contains("duck")
-        && listToCheck.contains("chicken") && listToCheck.contains("arabian horse") && listToCheck.contains("great white shark")
-        && listToCheck.contains("parakeet") && !listToCheck.contains("bengal cat") && !listToCheck.contains("german shepherd")) {
+
+        ArrayList<String> subtypesList = new ArrayList<>();
+        for (Animal animal : listToCheck) {
+            subtypesList.add(animal.subtype);
+        }
+        if (subtypesList.contains("golden retriever") && subtypesList.contains("dolphin") && subtypesList.contains("duck")
+        && subtypesList.contains("chicken") && subtypesList.contains("arabian horse") && subtypesList.contains("great white shark")
+        && subtypesList.contains("parakeet") && !subtypesList.contains("bengal cat") && !subtypesList.contains("german shepherd")) {
             allSubtypes = true;
         }
-        if (listToCheck.contains("lucy") && listToCheck.contains("winter") && listToCheck.contains("donald")
-                && listToCheck.contains("johnny") && listToCheck.contains("blueskin") && listToCheck.contains("jaws")
-                && listToCheck.contains("cleo") && !listToCheck.contains("billy") && !listToCheck.contains("apollo")) {
+
+        ArrayList<String> namesList = new ArrayList<>();
+        for (Animal animal : listToCheck) {
+            namesList.add(animal.name);
+        }
+        if (namesList.contains("lucy") && namesList.contains("winter") && namesList.contains("donald")
+                && namesList.contains("johnny") && namesList.contains("blueskin") && namesList.contains("jaws")
+                && namesList.contains("cleo") && !namesList.contains("billy") && !namesList.contains("apollo")) {
             allNames = true;
         }
 
         assertEquals(7, sizeOfList);
-        // assertEquals(true, allSubtypes);
-        // assertEquals(true, allNames);
+        assertEquals(true, allSubtypes);
+        assertEquals(true, allNames);
     }
 
     @Test
@@ -44,14 +51,19 @@ public class AnimalListTests {
 
         ArrayList<Animal> listToCheckFourLegs = animalList.getAnimalsWithAtLeastXLegs(4);
         int listToCheckFourLegsSize = listToCheckFourLegs.size();
-        boolean listContainsLucy = (listToCheckFourLegs.contains("lucy"));
-        boolean listContainsBlueskin = (listToCheckFourLegs.contains("blueskin"));
+
+        ArrayList<String> animalNames = new ArrayList<>();
+        for (Animal animal : listToCheckFourLegs) {
+            animalNames.add(animal.name);
+        }
+        boolean listContainsLucy = (animalNames.contains("lucy"));
+        boolean listContainsBlueskin = (animalNames.contains("blueskin"));
 
         assertEquals(7, listToCheckZeroLegsSize);
         assertEquals(5, listToCheckTwoLegsSize);
         assertEquals(2, listToCheckFourLegsSize);
-        // assertEquals(true, listContainsLucy);
-        // assertEquals(true, listContainsBlueskin);
+         assertEquals(true, listContainsLucy);
+         assertEquals(true, listContainsBlueskin);
     }
 
     @Test
