@@ -1,5 +1,11 @@
+/**
+ * Parent class that defines and can stores objects of type Animal
+ *
+ * @author  Jessica Shortz
+ * @version 2019.10.21
+ */
+
 package animalparser;
-import java.util.ArrayList;
 
 public class Animal {
 
@@ -9,6 +15,12 @@ public class Animal {
     protected String name;
     protected String subtype;
 
+    /**
+     * Constructor for Animal
+     * @param year year animal was born
+     * @param name name of animal
+     * @param subtype subtype or breed of animal
+     */
     public Animal(int year, String name, String subtype) {
         isSwimmer = false;
         num_of_legs = 4;
@@ -17,10 +29,18 @@ public class Animal {
         this.subtype = subtype;
     }
 
+    /**
+     * Getter for animal name
+     * @return String of animal name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Getter for animal birth year
+     * @return int birth year
+     */
     public int getYear() {
         return year;
     }

@@ -1,3 +1,10 @@
+/**
+ * Holds Animal of subtype German Shepherd
+ *
+ * @author Jessica Shortz
+ * @version 2019.10.21
+ */
+
 package animalparser;
 
 public class GermanShepherd extends Animal {

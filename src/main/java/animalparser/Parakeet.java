@@ -1,3 +1,10 @@
+/**
+ * Holds Animal of subtype Parakeet
+ *
+ * @author Jessica Shortz
+ * @version 2019.10.21
+ */
+
 package animalparser;
 
 public class Parakeet extends Animal {

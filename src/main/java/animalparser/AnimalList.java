@@ -1,3 +1,9 @@
+/**
+ * Container of animal lists and getters/setters for lists
+ *
+ * @author Jessica Shortz
+ * @version 2019.10.22
+ */
 package animalparser;
 import java.io.*;
 import java.util.ArrayList;
@@ -10,12 +16,22 @@ public class AnimalList {
     protected ArrayList<Animal> allAnimals;
     protected ArrayList<Animal> swimmers;
 
+    /**
+     * Constructor
+     * @throws FileNotFoundException due to file in createListOfAllAnimals()
+     */
     public AnimalList() throws FileNotFoundException {
         animalList = new ArrayList<>();
         allAnimals = createListOfAllAnimals();
         swimmers = collectSwimmers();
     }
 
+    /**
+     * Creates a list of all the animals in the file
+     * Animals are stored as generic objects of appropriate child class
+     * @return ArrayList holding all the animal objects
+     * @throws FileNotFoundException in event that animals.csv is not found
+     */
     public ArrayList createListOfAllAnimals() throws FileNotFoundException {
         AppShell appShell = new AppShell();
         ArrayList<Animal> listToReturn = new ArrayList<>();
@@ -65,6 +81,10 @@ public class AnimalList {
         return listToReturn;
     }
 
+    /**
+     * Prints all the animals in a given ArrayList
+     * @param listToPrint the ArrayList of animals to print
+     */
     public void printAllAnimals(ArrayList<Animal> listToPrint) {
         listToPrint.sort(Comparator.comparing(Animal::getName));
         for (Animal animal : listToPrint) {
@@ -82,12 +102,23 @@ public class AnimalList {
         }
     }
 
+    /**
+     * Customer getter method that returns an ArrayList with all the animals with at least X legs (param X)
+     * @param xLegs The minimum number of legs
+     * @return ArrayList of animals with at least xLegs
+     * @throws FileNotFoundException in event that animals.csv is not found
+     */
     public ArrayList getAnimalsWithAtLeastXLegs(int xLegs) throws FileNotFoundException {
         ArrayList<Animal> legsList = createListOfAllAnimals();
         legsList.removeIf(animal -> (animal.num_of_legs < xLegs));
         return legsList;
     }
 
+    /**
+     * Collects all the animals with interface Swimmer
+     * @return ArrayList of all Swimmer animals
+     * @throws FileNotFoundException if animals.csv not found
+     */
     public ArrayList collectSwimmers() throws FileNotFoundException {
         swimmers = createListOfAllAnimals();
         swimmers.removeIf(animal -> (!animal.isSwimmer));
@@ -95,6 +126,10 @@ public class AnimalList {
         return swimmers;
     }
 
+    /**
+     * Prints the list of swimmers to a swimmers.csv in csv format
+     * @throws IOException if file unable to be written to
+     */
     public void printSwimmersToCSV() throws IOException {
         BufferedWriter outputToFile = new BufferedWriter(new FileWriter("swimmers.csv", true));
         for (Animal animal : swimmers) {
@@ -103,6 +138,11 @@ public class AnimalList {
         outputToFile.close();
     }
 
+    /**
+     * Main method that runs other methods
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         AnimalList animalList = new AnimalList();
         animalList.printAllAnimals(animalList.allAnimals);

@@ -1,3 +1,10 @@
+/**
+ * Holds Animal of subtype Duck
+ *
+ * @author Jessica Shortz
+ * @version 2019.10.21
+ */
+
 package animalparser;
 
 public class Duck extends Animal implements Swimmer {

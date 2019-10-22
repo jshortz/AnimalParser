@@ -1,3 +1,10 @@
+/**
+ * Holds Animal of subtype Great White Shark
+ *
+ * @author Jessica Shortz
+ * @version 2019.10.21
+ */
+
 package animalparser;
 
 public class GreatWhiteShark extends Animal implements Swimmer {
